@@ -6,11 +6,11 @@
 
 Follow these steps to set up and work on your project:
 
-- [ ] Create a forked copy of this project.
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-- [ ] Create a new branch: `git checkout -b <firstName-lastName>`.
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-- [ ] Push commits: git `push origin <firstName-lastName>`.
+- [x] Create a forked copy of this project.
+- [x] Clone your OWN version of the repository (Not Lambda's by mistake!).
+- [x] Create a new branch: `git checkout -b <firstName-lastName>`.
+- [x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [x] Push commits: git `push origin <firstName-lastName>`.
 
 ### Task 2: Minimum Viable Product
 
@@ -27,9 +27,27 @@ Use a graphical tool like `SQLite Studio` to open `./data/northwind.db3` and exe
 (Write the queries inside `./queries.sql`)
 
 - Display the ProductName and CategoryName for all products in the database. Returns 77 records.
+    select ProductName, CategoryName from Product as P
+    join Category as C
+    on C.Id = P.CategoryId
+
 - Display the order Id and shipper CompanyName for all orders placed before August 9 2012. Returns 429 records.
+    select id, shipName, orderDate from Orders
+    where orderDate < date('2012-08-09') 
+
 - Display the name and quantity of the products ordered in order with Id 10251. Sort by ProductName. Returns 3 records.
+    select P.ProductName, OD.Quantity from OrderDetail as OD
+    join Product as P
+    on OD.ProductId = P.Id 
+    where OrderId = 10251
+    order by P.ProductName
+
 - Display the OrderID, customer's Company Name and the employee's Last Name for every order. All columns should be labeled clearly. Returns 16,789 records.
+    select O.Id, C.CompanyName, E.LastName from Orders as O
+    join Customer as C
+    on O.CustomerId = C.Id
+    join Employee as E
+    on O.EmployeeId = E.Id
 
 ### Database Methods
 
